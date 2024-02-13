@@ -7,9 +7,9 @@ t_s = 0.01;
 t_lim = 50;
 
 % Rigid body parameters
-m = 1;
-j = eye(3);
-j_i = eye(3);
+m = 100;
+j = 50 * eye(3);
+j_i = inv(j);
 
 % Rigid body dimensions
 dims = [1,1,3];
@@ -33,9 +33,9 @@ for i = t_s:t_s:t_lim
     step_counter = step_counter + 1;
 
     F = [0, 0, 0]';
-    M = [0, 0, 1.0]';
+    M = [0, 0, 0]';
 
-    [X_NEW,E_NEW,V_NEW,W_NEW] = CALCULATESTATES(m,j,j_i,F,M,...
+    [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
         X(:,step_counter),E(:,step_counter),V(:,step_counter), ...
         W(:,step_counter),t_s);
 
@@ -45,13 +45,12 @@ for i = t_s:t_s:t_lim
     W(:,step_counter + 1) = W_NEW;
 
     if mod(step_counter, 10) == 0
-    PLOTOBJECT(3, [1,1,3], X_NEW, E_NEW)
+        PLOTOBJECT(3, [1,1,3], X_NEW, E_NEW)
     end
 
 end
 
 %% Plot
-
 PLOTRESULTS([1,2],t_s,X,E,V,W)
 
 
