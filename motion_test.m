@@ -3,13 +3,13 @@
 clc, clear, close all
 
 % Simulation parameters
-t_s = 0.01;
-t_lim = 50;
+t_s = 0.001;
+t_lim = 100;
 
 % Rigid body parameters
 m = 1;
 j = eye(3);
-j_i = eye(3);
+j_i = inv(j);
 
 % Rigid body dimensions
 dims = [1,1,3];
@@ -32,26 +32,26 @@ for i = t_s:t_s:t_lim
 
     step_counter = step_counter + 1;
 
-    F = [0, 0, 0]';
-    M = [0, 0, 1.0]';
+    F = [0, 0, 10]';
+    M = [0, 0, 0]';
 
-    [X_NEW,E_NEW,V_NEW,W_NEW] = CALCULATESTATES(m,j,j_i,F,M,...
+    [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
         X(:,step_counter),E(:,step_counter),V(:,step_counter), ...
         W(:,step_counter),t_s);
 
     X(:,step_counter + 1) = X_NEW;
-    E(:,step_counter + 1) = E_NEW;
+    E(:,step_counter + 1) = ANGLEMAP(E_NEW);
     V(:,step_counter + 1) = V_NEW;
     W(:,step_counter + 1) = W_NEW;
 
-    if mod(step_counter, 10) == 0
-    PLOTOBJECT(3, [1,1,3], X_NEW, E_NEW)
+    if mod(step_counter, 100) == 0
+        PLOTOBJECT(3, dims, X_NEW, E_NEW)
+        pause(0.1)
     end
-
+    
 end
 
 %% Plot
-
 PLOTRESULTS([1,2],t_s,X,E,V,W)
 
 
