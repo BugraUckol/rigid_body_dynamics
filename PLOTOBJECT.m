@@ -5,15 +5,15 @@ D = DIMS(2);
 H = DIMS(3);
 
 % Create corner locations of the bottom
-C1 = [-W/2, -D/2, H/2]';
-C2 = [ W/2, -D/2, H/2]';
-C3 = [ W/2,  D/2, H/2]';
-C4 = [-W/2,  D/2, H/2]';
+C1 = [-W/2, -D/2, -H/2]';
+C2 = [ W/2, -D/2, -H/2]';
+C3 = [ W/2,  D/2, -H/2]';
+C4 = [-W/2,  D/2, -H/2]';
 
 BOTTOM = [C1, C2, C3, C4];
 
 % Create upper locations
-UP = BOTTOM + [0, 0, -H]';
+UP = BOTTOM + [0, 0, H]';
 
 % Convert to homogenous coordinates
 BOTTOMH = [BOTTOM; 1, 1, 1, 1];
@@ -30,7 +30,7 @@ UPHT = R * UPH;
 BOTTOMT = BOTTOMHT(1:3,:);
 UPT = UPHT(1:3,:);
 
-figure(FIGNO), clf
+figure(FIGNO), %clf
 hold all
 
 E1 = [BOTTOMT(:,1),UPT(:,1)]';
@@ -47,8 +47,9 @@ patch(UPT(1,:),UPT(2,:),UPT(3,:),'red')
 patch(BOTTOMT(1,:),BOTTOMT(2,:),BOTTOMT(3,:),'green')
 
 daspect([1,1,1]), grid on
-xlabel('X [m]')
-ylabel('Y [m]')
+title('Rigid Body','FontSize',18,'FontWeight','bold')
+xlabel('X [m]','FontSize',12,'FontWeight','bold')
+ylabel('Y [m]','FontSize',12,'FontWeight','bold')
 view(-45,45)
 
 end

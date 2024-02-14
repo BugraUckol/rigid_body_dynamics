@@ -12,7 +12,7 @@ j = eye(3);
 j_i = inv(j);
 
 % Rigid body dimensions
-dims = [3,3,3];
+dims = [1,1,3];
 
 % Allocation
 X = zeros(3,t_lim/t_s);
@@ -32,8 +32,8 @@ for i = t_s:t_s:t_lim
 
     step_counter = step_counter + 1;
 
-    F = [0, 0, 0]';
-    M = [0, 0, 2]';
+    F = [0, 0, 10]';
+    M = [0, 0, 0]';
 
     [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
         X(:,step_counter),E(:,step_counter),V(:,step_counter), ...
@@ -44,10 +44,11 @@ for i = t_s:t_s:t_lim
     V(:,step_counter + 1) = V_NEW;
     W(:,step_counter + 1) = W_NEW;
 
-    if mod(step_counter, 1000) == 0
+    if mod(step_counter, 100) == 0
         PLOTOBJECT(3, dims, X_NEW, E_NEW)
+        pause(0.1)
     end
-
+    
 end
 
 %% Plot
