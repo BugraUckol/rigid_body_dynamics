@@ -4,7 +4,7 @@ clc, clear, close all
 
 % Simulation parameters
 t_s = 0.001;
-t_lim = 10;
+t_lim = 50;
 
 % Rigid body parameters
 m = 1;
@@ -12,7 +12,7 @@ j = eye(3);
 j_i = inv(j);
 
 % Rigid body dimensions
-dims = [0.2 , 0.2, 0.05];
+dims = [0.8 , 0.8, 0.05];
 
 % Allocation
 X = zeros(3,t_lim/t_s);
@@ -22,9 +22,9 @@ W = zeros(3,t_lim/t_s);
 
 % Initial conditions
 X(:,1) = [1, 1, 1]';
-E(:,1) = [0, pi/4, 0]';
-V(:,1) = [0, 0, 0]';
-W(:,1) = [0, 0, 0.5]';
+E(:,1) = [0, pi/4, pi/4]';
+V(:,1) = [0, 0, 0.1]';
+W(:,1) = [0, 0, 0.2]';
 
 %% Simulation
 step_counter = 0;
@@ -32,7 +32,7 @@ for i = t_s:t_s:t_lim
 
     step_counter = step_counter + 1;
 
-    F = [0, 0, 0.03]';
+    F = [0, 0, 0]';
     M = [0, 0, 0]';
 
     [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
