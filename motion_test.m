@@ -45,7 +45,7 @@ for i = t_s:t_s:t_lim
     W(:,step_counter + 1) = W_NEW;
 
     if mod(step_counter, 100) == 0
-        PLOTOBJECT(3, dims, X_NEW, E_NEW)
+        PLOTOBJECT(3, dims, X_NEW, E_NEW, 1)
         pause(0.1)
     end
     

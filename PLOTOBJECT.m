@@ -1,4 +1,4 @@
-function PLOTOBJECT(FIGNO, DIMS, X, E)
+function PLOTOBJECT(FIGNO, DIMS, X, E, CLF)
 % Take dimensions
 W = DIMS(1);
 D = DIMS(2);
@@ -30,7 +30,10 @@ UPHT = R * UPH;
 BOTTOMT = BOTTOMHT(1:3,:);
 UPT = UPHT(1:3,:);
 
-figure(FIGNO), %clf
+figure(FIGNO)
+if CLF
+    clf
+end
 hold all
 
 E1 = [BOTTOMT(:,1),UPT(:,1)]';
