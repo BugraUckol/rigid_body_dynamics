@@ -45,7 +45,7 @@ Equations are based on Newton-Euler `Equations`. They are written for the point 
 * $\ \dot{\Omega} = J^{-1} (M - \Omega \times J \Omega) $
 
 Having found velocities represented on the body frame, location on the Earth frame and orientation of the body with respect to Earth frame can be found with the following equations.
-* $\ \dot{X} = C_{B2E} \dot{V}$
+* $\ \dot{X} = C_{B2E} V$
 * $\ \dot{\Phi} = C_{\Omega 2 \dot{\Phi}} \Omega $
 
 ## Plots
