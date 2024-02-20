@@ -12,7 +12,7 @@ j = eye(3);
 j_i = inv(j);
 
 % Rigid body dimensions
-dims = [0.8 , 0.8, 0.05];
+dims = [0.5 , 0.5, 5];
 
 % Allocation
 X = zeros(3,t_lim/t_s);
@@ -21,10 +21,10 @@ V = zeros(3,t_lim/t_s);
 W = zeros(3,t_lim/t_s);
 
 % Initial conditions
-X(:,1) = [1, 1, 1]';
-E(:,1) = [0, pi/4, pi/4]';
-V(:,1) = [0, 0, 0.1]';
-W(:,1) = [0, 0, 0.2]';
+X(:,1) = [2, 2, 2]';
+E(:,1) = [0, pi/4, 0]';
+V(:,1) = [0, 0, -80]';
+W(:,1) = [0, 0, 0]';
 
 %% Simulation
 step_counter = 0;
@@ -32,7 +32,7 @@ for i = t_s:t_s:t_lim
 
     step_counter = step_counter + 1;
 
-    F = [0, 0, 0]';
+    F = [0, 0, 0]' + CE2B(E(:,step_counter)) * [0, 0, 9.81]';
     M = [0, 0, 0]';
 
     [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
@@ -44,8 +44,8 @@ for i = t_s:t_s:t_lim
     V(:,step_counter + 1) = V_NEW;
     W(:,step_counter + 1) = W_NEW;
 
-    if mod(step_counter, 1000) == 0
-        PLOTOBJECT(3, dims, X_NEW, E_NEW, 0)
+    if mod(step_counter, 100) == 0
+        PLOTOBJECT(3, dims, X_NEW, E_NEW, 1)
         % pause(0.1)
     end
     
