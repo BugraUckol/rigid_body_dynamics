@@ -79,5 +79,7 @@ title('Rigid Body','FontSize',18,'FontWeight','bold')
 xlabel('X [m]','FontSize',12,'FontWeight','bold')
 ylabel('Y [m]','FontSize',12,'FontWeight','bold')
 view(-45,45)
+set(gca, 'YDir','reverse')
+set(gca, 'ZDir','reverse')
 
 end
