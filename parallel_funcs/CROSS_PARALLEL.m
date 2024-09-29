@@ -1,7 +1,7 @@
 function [CROSS] = CROSS_PARALLEL(V1, V2)
     % Ensure inputs are gpuArrays
-    V1 = gpuArray(V1);
-    V2 = gpuArray(V2);
+    % V1 = gpuArray(V1);
+    % V2 = gpuArray(V2);
 
     % Extract Euler angles
     a1 = V1(1, 1, :);
@@ -24,5 +24,5 @@ function [CROSS] = CROSS_PARALLEL(V1, V2)
     CROSS = pagefun(@mtimes, V1_SSM, V2);
     
     % Gather the result if needed
-    CROSS = gather(CROSS);
+    % CROSS = gather(CROSS);
 end

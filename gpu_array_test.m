@@ -1,19 +1,20 @@
 addpath('parallel_funcs')
 
-N = 10000;
-step = 100;
+step = 10000;
 
-Q = 1:step:N;
-TGE = zeros(N/step, 1);
-TE = zeros(N/step, 1);
+Q = [1e1, 1e2, 1e3, 1e4, 1e5, 1e6]; %1:step:N;
+N = length(Q);
+
+TGE = zeros(length(Q), 1);
+TE = zeros(length(Q), 1);
 
 idx = 0;
 for i = Q
 
     idx = idx + 1;
 
-    GE = gpuArray.rand(i, 3);
-    E = rand(N, 3);
+    GE = gpuArray.rand(Q(idx), 3);
+    E = rand(Q(idx), 3);
     
     % Call the function in GPU
     tic
@@ -24,7 +25,7 @@ for i = Q
     % Call the function in CPU
     C = zeros(3,3,i);
     tic
-    for j = 1:i
+    parfor j = 1:i
         C(:,:,j) = CB2E(E(j,:));
         C(:,:,j) = CE2B(E(j,:));
     end

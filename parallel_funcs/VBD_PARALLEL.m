@@ -3,9 +3,9 @@ function VBD = VBD_PARALLEL(m, F, V, W)
 N = size(F, 1);
 
 % Ensure inputs are gpuArrays
-F = gpuArray(F);
-W = gpuArray(W);
-V = gpuArray(V);
+% F = gpuArray(F);
+% W = gpuArray(W);
+% V = gpuArray(V);
 
 % Reshape W for page-wise multiplication
 F = reshape(F', 3, 1, N);
@@ -20,6 +20,6 @@ VBD = F ./ m - corilois;
 VBD = reshape(VBD, 3, N)';
 
 % Gather the result if needed
-VBD = gather(VBD);
+% VBD = gather(VBD);
 
 end

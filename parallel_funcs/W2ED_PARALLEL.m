@@ -1,7 +1,7 @@
 function [ED] = W2ED_PARALLEL(W, E)
     % Ensure inputs are gpuArrays
-    W = gpuArray(W);
-    E = gpuArray(E);
+    % W = gpuArray(W);
+    % E = gpuArray(E);
 
     % Extract Euler angles
     phi = E(:, 1);
@@ -36,5 +36,5 @@ function [ED] = W2ED_PARALLEL(W, E)
     ED = reshape(ED, 3, N)';
     
     % Gather the result if needed
-    ED = gather(ED);
+    % ED = gather(ED);
 end

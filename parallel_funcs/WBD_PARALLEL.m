@@ -20,6 +20,6 @@ WBD = pagefun(@mtimes, j_i, (M - GYRO));
 WBD = reshape(WBD, 3, N)';
 
 % Gather the result if needed
-WBD = gather(WBD);
+% WBD = gather(WBD);
 
 end

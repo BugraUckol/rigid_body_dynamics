@@ -1,7 +1,7 @@
 function C = CE2B_PARALLEL(E)
 
 % Ensure inputs are gpuArrays
-E = gpuArray(E);
+% E = gpuArray(E);
 
 % Extract components
 E1 = E(:, 1); % Rotation about x-axis

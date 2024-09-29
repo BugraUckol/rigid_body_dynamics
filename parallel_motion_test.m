@@ -24,7 +24,7 @@ dims = [0.5 , 0.5, 5];
 % Initial conditions
 P_X(:,:) = gpuArray(repmat([2, 2, 2],ns,1));
 P_E(:,:) = gpuArray(repmat([0, pi/4, 0],ns,1));
-P_V(:,:) = gpuArray(repmat([0, 0, -80],ns,1));
+P_V(:,:) = gpuArray(repmat([0, 0, 0],ns,1));
 P_W(:,:) = gpuArray(repmat([0, 0, 0],ns,1));
 
 % GPU allocations

@@ -1,7 +1,7 @@
 function VE = VE_PARALLEL(E, V)
 
 % Ensure inputs are gpuArrays
-E = gpuArray(E);
+% E = gpuArray(E);
 
 % Extract components
 E1 = E(:, 1); % Rotation about x-axis
@@ -75,6 +75,6 @@ VE = pagefun(@mtimes, C, V);
 VE = reshape(VE, 3, N)';
 
 % Gather the result if needed
-VE = gather(VE);
+% VE = gather(VE);
 
 end
