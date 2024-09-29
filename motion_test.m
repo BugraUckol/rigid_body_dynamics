@@ -32,7 +32,7 @@ for i = t_s:t_s:t_lim
 
     step_counter = step_counter + 1;
 
-    F = [0, 0, 0]' + CE2B(E(:,step_counter)) * [0, 0, 9.81]';
+    F = [0, 0, 0]' + m * CE2B(E(:,step_counter)) * [0, 0, 9.81]';
     M = [0, 0, 0]';
 
     [X_NEW,E_NEW,V_NEW,W_NEW] = RK4UPDATESTATES(m,j,j_i,F,M,...
